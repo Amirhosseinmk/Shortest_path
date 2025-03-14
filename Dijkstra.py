@@ -1,8 +1,5 @@
+from bubble_sort import bubbleSort
 import sys
-from heapq import heapify, heappush,heappop
-
-
-
 
 def dijkstra(graph, src):
     inf = sys.maxsize  #Representing infinity
@@ -46,7 +43,7 @@ graph = {
     'Venezuela':{'Brazil':2193,'Colombia':1022,'Guyana':1536}
 }
 
-
+#here you can write the name of any country and get shortest paths and their corresponding distances
 source = input("Enter the starting country: ")
 
 if source not in graph:
@@ -55,16 +52,14 @@ result = dijkstra(graph,source)
 
 
 
+
 print("\nShortest paths from", source)
 print("-" * 40)
 print(f"{'Country':<15}{'Cost (km)':<15}{'Predecessor'}")
 print("-" * 40)
 
-for country , data in result.items():
+sorted_result = bubbleSort(list(result.items()), key = lambda x:x[1]['cost'])
+
+for country , data in sorted_result:
     pred = data['pred'] if data['pred'] else "None"
     print(f"{country:<15}{data['cost']:<15}{pred}")
-
-
-
-
-
